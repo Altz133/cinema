@@ -1,14 +1,21 @@
 package com.example.cinema.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="users")
-public class Users {
+public @Data class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="user_id")
     private int id;
+
+    @OneToMany(mappedBy = "user_id")
+    private List<Ticket> tickets;
 
     @Column(name="firstname")
     private String firstName;

@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/users")
 public class UserController {
@@ -21,11 +19,16 @@ public class UserController {
         this.userService = theUserService;
     }
 
+
     @GetMapping("/signin")
     public String signInForm(Model theModel){
         Users user = new Users();
         theModel.addAttribute("users", user);
         return "registerForm";
+    }
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
     @PostMapping("/save")
     public String saveUser(@ModelAttribute("users") Users users){
@@ -36,6 +39,8 @@ public class UserController {
         userService.save(users);
         return "redirect:/users/info";
     }
+
+
 
     @GetMapping("/info")
     public String listEmployees(Model theModel) {

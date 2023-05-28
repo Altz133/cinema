@@ -1,12 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html >
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<div th:insert="~{fragments/header}"></div>
+<div th:insert="~{/fragments/header}"></div>
 <h1> Halo </h1>
-<div th:insert="~{fragments/footer :: footer}">&copy; 2016 The Static Templates</div>
+<h1 sec:authorize="isAnonymous()"> YOu are anonymous</h1>
+<div sec:authorize="isAuthenticated()">
+    <span sec:authentication="principal.username"></span>
+    <span sec:authentication="principal.authorities"></span>
+</div>
+<div th:insert="~{/fragments/footer :: footer}">&copy; 2016 The Static Templates</div>
 </body>
 </html>

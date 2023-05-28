@@ -6,7 +6,25 @@
 </head>
 <body>
 <div th:insert="~{fragments/header}"></div>
-
+<table class="table table-bordered table-striped">
+    <thead class="table-light">
+    <tr>
+        <th> Title </th>
+        <th>Movie hall</th>
+        <th>Date</th>
+        <th>Seance time</th>
+        <th>Seats available </th>
+        <th>Seance length</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each = "tempUser : ${users}">
+        <td th:text="${tempUser.firstName}"></td>
+        <td th:text="${tempUser.lastName}"></td>
+        <td th:text="${tempUser.email}"></td>
+    </tr>
+    </tbody>
+</table>
 <div th:insert="~{fragments/footer :: footer}">&copy; 2016 The Static Templates</div>
 </body>
 </html>
