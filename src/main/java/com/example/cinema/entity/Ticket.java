@@ -18,9 +18,18 @@ public @Data class Ticket {
 
     @ManyToOne
     @JoinColumn(name="seance_id")
-    private Seance seance;
+    private Seance seance_id;
 
     @Column(name="seat")
     private int seat;
 
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "id=" + id +
+                ", user_id=" + user_id +
+                ", seance_id=" + seance_id +
+                ", seat=" + seat +
+                '}';
+    }
 }

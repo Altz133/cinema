@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="~{fragments/header}"></div>
+<table class="table table-bordered table-striped">
+    <thead class="table-light">
+    <tr>
+        <th> Id </th>
+        <th>Title</th>
+        <th>Movie hall name</th>
+        <th>Date</th>
+        <th>Seance time</th>
+        <th>Seats available </th>
+        <th>Seance length</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each = "tempSeance : ${seances}">
+        <td th:text="${tempSeance.getId()}"></td>
+        <td th:text="${tempSeance.movie_id.getTitle()}"></td>
+        <td th:text="${tempSeance.hall_id.getHallName()}"></td>
+        <td th:text="${tempSeance.date}"></td>
+        <td th:text="${tempSeance.time}"></td>
+        <td th:text="${tempSeance.seats_available}"></td>
+        <td th:text="${tempSeance.getMovie_id().getLength()}"></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a th:href="@{/addNewSeance}">Add new Seance</a>
+</div>
+<div th:insert="~{fragments/footer :: footer}">&copy; 2016 The Static Templates</div>
+</body>
+</html>

@@ -1,12 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div th:insert="~{fragments/header}"></div>
+<div class="container">
+    <form action="#"
+          th:action="@{/saveSeance}"
+          th:object="${seance}"
+          method="POST">
 
+        <label for="dropDownListMovies">Movie</label>
+        <select th:field="*{movie_id}" class="form-control" id="dropDownListMovies">
+            <option value ="0" disabled> select option</option>
+            <option th:each="option : ${movieOptions}" th:value="${option.getId()}" th:text="${option.getTitle()}"></option>
+        </select>
+        <label for="dropDownListHalls" > Cinema Hall </label>
+        <select class="form-control" id="dropDownListHalls" th:field="*{hall_id}">
+            <option value="0" disabled > select option</option>
+            <option th:each="hall : ${cinemaHallOptions}" th:value="${hall.getHallId()}" th:text="${hall.getHallName()}" ></option>
+        </select>
+
+        <label for="date"> Date </label>
+        <input type="Date" th:field="*{date}" name="date" id="date"/>
+
+        <label for="time">Time</label>
+        <input type="Time" th:field="*{time}" name="time" id="time" step="2"/>
+
+<!--        <input type="hidden" th:field="seats_available-->
+        <input type="submit">
+    </form>
+
+</div>
 
 <div th:insert="~{fragments/footer :: footer}">&copy; 2016 The Static Templates</div>
 </body>

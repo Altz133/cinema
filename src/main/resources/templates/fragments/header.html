@@ -21,10 +21,10 @@
         <a class="nav-link" th:href="@{/}"> Home </span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" th:href="@{/users/repertuar}">Repertuar</a>
+        <a class="nav-link" th:href="@{/repertoire}">Repertoire</a>
       </li>
-      <li class="nav-item" >
-        <a class="nav-link" th:href="@{/users/info}">Info (admin only)</a>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/users/info}" sec:authorize="hasRole('Admin')">Info (admin only)</a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">

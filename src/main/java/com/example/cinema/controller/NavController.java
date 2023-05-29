@@ -14,11 +14,6 @@ public class NavController {
         return "registerForm";
     }
 
-    @GetMapping("/repertuar")
-    public String repertuar(){
-        return "repertuar";
-    }
-
     @GetMapping("/forbidden-access")
     public String accessDenited(){
         return "accessDenied";

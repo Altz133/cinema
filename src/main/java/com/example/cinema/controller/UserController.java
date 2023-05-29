@@ -1,5 +1,6 @@
 package com.example.cinema.controller;
 
+import com.example.cinema.entity.Seance;
 import com.example.cinema.entity.Users;
 import com.example.cinema.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/users")
@@ -44,11 +47,13 @@ public class UserController {
 
     @GetMapping("/info")
     public String listEmployees(Model theModel) {
-
         Iterable<Users> theUsers = userService.findAll();
         // add to the spring model
         theModel.addAttribute("users", theUsers);
 
+
         return "listOfUsers";
     }
+
+
 }

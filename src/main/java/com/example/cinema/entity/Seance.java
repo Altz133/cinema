@@ -2,8 +2,11 @@ package com.example.cinema.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Time;
+
 import java.util.List;
 
 @Entity
@@ -33,6 +36,18 @@ public @Data class Seance {
     private int seats_available;
 
     @Column(name="seance_time")
-    private String time;
+    private Time time;
 
+    @Override
+    public String toString() {
+        return "Seance{" +
+                "id=" + id +
+                ", ticketList=" + ticketList +
+                ", movie_id=" + movie_id +
+                ", hall_id=" + hall_id +
+                ", date=" + date +
+                ", seats_available=" + seats_available +
+                ", time='" + time + '\'' +
+                '}';
+    }
 }
