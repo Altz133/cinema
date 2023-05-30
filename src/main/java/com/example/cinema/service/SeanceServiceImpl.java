@@ -23,4 +23,12 @@ public class SeanceServiceImpl implements SeanceService{
     public Seance save(Seance theSeance) {
         return seanceRepository.save(theSeance);
     }
+
+    @Override
+    public Seance getSeanceById(int id) {
+        return seanceRepository.getSeancesById(id);
+    }
+
+
+
 }

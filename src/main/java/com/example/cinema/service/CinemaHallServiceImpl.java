@@ -18,11 +18,8 @@ public class CinemaHallServiceImpl implements CinemaHallService{
     public Iterable<CinemaHall> findAll() {
         return cinemaHallsRepository.findAll();
     }
-
-
-
     @Override
-    public int getSeatsByHallId(int id) {
+    public CinemaHall getCinemaHallByHallId(int id) {
         return cinemaHallsRepository.getCinemaHallByHallId(id);
     }
 }

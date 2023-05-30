@@ -10,24 +10,25 @@
 <table class="table table-bordered table-striped">
     <thead class="table-light">
     <tr>
-        <th> Id </th>
         <th>Title</th>
         <th>Movie hall name</th>
         <th>Date</th>
         <th>Seance time</th>
         <th>Seats available </th>
         <th>Seance length</th>
+        <th>Ticket</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each = "tempSeance : ${seances}">
-        <td th:text="${tempSeance.getId()}"></td>
+
         <td th:text="${tempSeance.movie_id.getTitle()}"></td>
         <td th:text="${tempSeance.hall_id.getHallName()}"></td>
         <td th:text="${tempSeance.date}"></td>
         <td th:text="${tempSeance.time}"></td>
-        <td th:text="${tempSeance.seats_available}"></td>
+        <td th:text="${#lists.size(tempSeance.seats)}"></td>
         <td th:text="${tempSeance.getMovie_id().getLength()}"></td>
+        <td> <a th:href="@{/seanceId/{seance_id}/name/{user} (seance_id=${tempSeance.getId()}, user=${#authentication.getName()})}">Buy a ticket!</a></td>
     </tr>
     </tbody>
 </table>

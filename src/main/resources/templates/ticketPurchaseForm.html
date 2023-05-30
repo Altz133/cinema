@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="~{fragments/header}"></div>
+<form action="#"
+      th:action="@{/saveTicket}"
+      th:object="${ticket}"
+      method="POST">
+
+<div>
+    <h1 style="margin:auto"> Screen </h1>
+    <span th:each="seat : ${seats}">
+        <label for="seat" th:text="${seat}" th:value="${seat}" th:field="*{seat}"></label>
+        <input type="checkbox" id="seat"/>
+        <span th:if="${seat % 10 == 0}"><br> </span>
+    </span>
+<!--    <input type="hidden" th:field="*{id}">-->
+<!--    <input type="hidden" th:field="*{user}">-->
+    <input type="submit">
+</div>
+</form>
+
+
+<div th:insert="~{fragments/footer :: footer}">&copy; 2016 The Static Templates</div>
+</body>
+</html>

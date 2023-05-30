@@ -8,4 +8,7 @@ public interface SeanceService {
 
     Iterable<Seance> findAllSeances();
     Seance save(Seance theSeance);
+
+    Seance getSeanceById(int id);
+
 }

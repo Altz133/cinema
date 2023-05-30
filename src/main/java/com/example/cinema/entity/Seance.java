@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.sql.Date;
 import java.sql.Time;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -32,11 +33,11 @@ public @Data class Seance {
     @Column(name="seance_date")
     private Date date;
 
-    @Column(name="seats_available")
-    private int seats_available;
-
     @Column(name="seance_time")
     private Time time;
+
+    @Column(name="seats_available2")
+    private int[] seats;
 
     @Override
     public String toString() {
@@ -46,8 +47,8 @@ public @Data class Seance {
                 ", movie_id=" + movie_id +
                 ", hall_id=" + hall_id +
                 ", date=" + date +
-                ", seats_available=" + seats_available +
-                ", time='" + time + '\'' +
+                ", time=" + time +
+                ", seats=" + Arrays.toString(seats) +
                 '}';
     }
 }
