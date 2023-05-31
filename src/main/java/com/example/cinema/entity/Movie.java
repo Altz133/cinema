@@ -2,11 +2,13 @@ package com.example.cinema.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.List;
 
 @Entity
 @Table(name="movies")
+@ToString
 public @Data class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +16,7 @@ public @Data class Movie {
     private int id;
 
     @OneToMany(mappedBy = "movie_id")
+    @ToString.Exclude
     private List<Seance> seanceList;
 
     @Column(name="title")
@@ -74,13 +77,4 @@ public @Data class Movie {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", length='" + length + '\'' +
-                ", description='" + description + '\'' +
-                '}';
-    }
 }

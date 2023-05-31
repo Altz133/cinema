@@ -2,19 +2,21 @@ package com.example.cinema.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name="users")
+@ToString
 public @Data class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="user_id")
     private int id;
 
-    @OneToMany(mappedBy = "user_id")
+    @OneToMany(mappedBy = "userId")
     private List<Ticket> tickets;
 
     @Column(name="firstname")
@@ -87,14 +89,4 @@ public @Data class Users {
         this.role = role;
     }
 
-    @Override
-    public String toString() {
-        return "Users{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
-                '}';
-    }
 }

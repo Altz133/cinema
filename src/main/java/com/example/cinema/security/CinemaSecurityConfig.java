@@ -25,7 +25,7 @@ public class CinemaSecurityConfig{
 
     //to działą na pewno nie ruszać
     @Bean
-    public UserDetailsManager userDetailsManager(DataSource dataSource){
+    public  UserDetailsManager userDetailsManager(DataSource dataSource){
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
         jdbcUserDetailsManager.setUsersByUsernameQuery(
                 "SELECT email, password, active FROM users WHERE email=?");

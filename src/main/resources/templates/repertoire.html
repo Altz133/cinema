@@ -8,15 +8,15 @@
 <body>
 <div th:insert="~{fragments/header}"></div>
 <table class="table table-bordered table-striped">
-    <thead class="table-light">
+    <thead class="thead-dark">
     <tr>
-        <th>Title</th>
-        <th>Movie hall name</th>
-        <th>Date</th>
-        <th>Seance time</th>
-        <th>Seats available </th>
-        <th>Seance length</th>
-        <th>Ticket</th>
+        <th scope="col">Title</th>
+        <th scope="col">Movie hall name</th>
+        <th scope="col">Date</th>
+        <th scope="col">Seance time</th>
+        <th scope="col">Seats available </th>
+        <th scope="col">Seance length</th>
+        <th scope="col">Ticket</th>
     </tr>
     </thead>
     <tbody>
@@ -28,7 +28,7 @@
         <td th:text="${tempSeance.time}"></td>
         <td th:text="${#lists.size(tempSeance.seats)}"></td>
         <td th:text="${tempSeance.getMovie_id().getLength()}"></td>
-        <td> <a th:href="@{/seanceId/{seance_id}/name/{user} (seance_id=${tempSeance.getId()}, user=${#authentication.getName()})}">Buy a ticket!</a></td>
+        <td> <a th:href="@{/seanceId/{seance_id} (seance_id=${tempSeance.getId()})}">Buy a ticket!</a></td>
     </tr>
     </tbody>
 </table>

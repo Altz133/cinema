@@ -2,6 +2,7 @@ package com.example.cinema.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
@@ -9,9 +10,11 @@ import java.sql.Time;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="seance")
+@ToString
 public @Data class Seance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +22,7 @@ public @Data class Seance {
     private int id;
 
     @OneToMany(mappedBy = "seance_id")
+    @ToString.Exclude
     private List<Ticket> ticketList;
 
     @ManyToOne
@@ -39,16 +43,5 @@ public @Data class Seance {
     @Column(name="seats_available2")
     private int[] seats;
 
-    @Override
-    public String toString() {
-        return "Seance{" +
-                "id=" + id +
-                ", ticketList=" + ticketList +
-                ", movie_id=" + movie_id +
-                ", hall_id=" + hall_id +
-                ", date=" + date +
-                ", time=" + time +
-                ", seats=" + Arrays.toString(seats) +
-                '}';
-    }
+
 }

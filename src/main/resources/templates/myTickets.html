@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="~{fragments/header}"></div>
+<h1> My Tickets </h1>
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th>Title</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Movie hall name</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Seance length</th>
+        <th>My seats</th>
+        <th>Ticket ID</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each = "myTickets : ${tickets}">
+
+        <td th:text="${myTickets.seance_id.getMovie_id().getTitle()}"></td>
+        <td th:text="${myTickets.userId.getFirstName()}"></td>
+        <td th:text="${myTickets.userId.getLastName()}"></td>
+        <td th:text="${myTickets.seance_id.getHall_id().getHallName()}"></td>
+        <td th:text="${myTickets.seance_id.getDate()}"></td>
+        <td th:text="${myTickets.seance_id.getTime()}"></td>
+        <td th:text="${myTickets.seance_id.getMovie_id().getLength()}"></td>
+        <td>
+            <p th:each="seat : ${myTickets.getSeat()}">
+                <span th:text="${seat}"></span>
+            </p>
+        </td>
+        <td th:text="${myTickets.getId()}"></td>
+    </tr>
+    </tbody>
+
+</table>
+</body>
+</html>

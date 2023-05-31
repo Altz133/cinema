@@ -1,9 +1,13 @@
 package com.example.cinema.controller;
 
 import com.example.cinema.entity.Seance;
+import com.example.cinema.entity.Ticket;
 import com.example.cinema.entity.Users;
+import com.example.cinema.service.TicketService;
 import com.example.cinema.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +20,13 @@ import java.util.List;
 public class UserController {
 
     private UserService userService;
+    private TicketService ticketService;
 
     @Autowired
-    public void setUserService(UserService theUserService){
+    public void setUserService(UserService theUserService, TicketService theTicketService){
         this.userService = theUserService;
+
+        this.ticketService= theTicketService;
     }
 
 
@@ -43,8 +50,6 @@ public class UserController {
         return "redirect:/users/info";
     }
 
-
-
     @GetMapping("/info")
     public String listEmployees(Model theModel) {
         Iterable<Users> theUsers = userService.findAll();
@@ -53,6 +58,14 @@ public class UserController {
 
 
         return "listOfUsers";
+    }
+    @GetMapping("/myTickets")
+    public String listOfMyTickets(Model theModel){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Users currentUser = userService.getUsersByEmail(authentication.getName());
+        Iterable<Ticket> myTickets = ticketService.findAllTicketsByUser(currentUser);
+        theModel.addAttribute("tickets",myTickets);
+        return "myTickets";
     }
 
 
