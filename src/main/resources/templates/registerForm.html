@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -12,20 +13,25 @@
           th:object="${users}"
           method="POST">
 
-    <label>First Name</label>
-    <input th:field="*{firstName}"/>
+        <label for="firstName">First Name</label>
+        <input th:field="*{firstName}" id="firstName"/>
 
-<!--    <label th:text="label.users.lastName">Last Name</label>-->
+        <label for="lastName">Last Name</label>
+        <input type="text" th:field="*{lastName}" id="lastName"/>
 
-    <lable>Last Name</lable>
-    <input type="text" th:field="*{lastName}"/>
-
-    <label>Email</label>
-        <input type="text" th:field="*{email}"/>
-        <label>Password</label>
-        <input type="password" th:field="*{password}">
-
+        <label for="email">Email</label>
+        <input type="text" th:field="*{email}" id="email"/>
+        <label for="passwd">Password</label>
+        <input type="password" th:field="*{password}" id="passwd">
+        <div sec:authorize="hasRole('ADMIN')">
+            <label for="setRole"> Set Role (Manager or higher only)</label>
+            <select class="form-control" id="setRole" th:field="*{role}">
+                <option value="0" disabled> select option</option>
+                <option th:each="role : ${roles}" th:value="${role}" th:text="${role}" ></option>
+            </select>
+        </div>
         <input type="submit">
+
     </form>
 
 </div>

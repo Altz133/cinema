@@ -19,8 +19,8 @@
         <input type="checkbox" id="seat"  th:value="${seat}" th:field="*{seat}"/>
         <span th:if="${seat % 10 == 0}"><br> </span>
     </span>
-    <input type="hidden" th:text="${ticket.getUserId()}" th:field="*{userId}" th:value="${ticket.getUserId()}">
-    <input type="hidden" th:text="${ticket.getSeance_id()}" th:field="*{seance_id}" th:value="${ticket.getSeance_id()}">
+    <input type="hidden" th:field="*{userId}" th:value="${ticket.getUserId()}">
+    <input type="hidden"  th:field="*{seance_id}" th:value="${ticket.getSeance_id()}">
     <input type="submit">
 </div>
 </form>

@@ -80,7 +80,6 @@ public class CinemaController {
     }
     @PostMapping("/saveTicket")
     public String saveTicketForUser(@ModelAttribute("ticket") Ticket ticket){
-        System.out.println(ticket);
         ticketService.saveTicket(ticket);
         return "redirect:/repertoire";
     }

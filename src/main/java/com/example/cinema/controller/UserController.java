@@ -33,6 +33,8 @@ public class UserController {
     @GetMapping("/signin")
     public String signInForm(Model theModel){
         Users user = new Users();
+        Iterable<String> allRoles= userService.getEveryRole();
+        theModel.addAttribute("roles",allRoles);
         theModel.addAttribute("users", user);
         return "registerForm";
     }
@@ -55,8 +57,6 @@ public class UserController {
         Iterable<Users> theUsers = userService.findAll();
         // add to the spring model
         theModel.addAttribute("users", theUsers);
-
-
         return "listOfUsers";
     }
     @GetMapping("/myTickets")

@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
@@ -13,6 +15,7 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 
 import javax.sql.DataSource;
 
@@ -25,7 +28,7 @@ public class CinemaSecurityConfig{
 
     //to działą na pewno nie ruszać
     @Bean
-    public  UserDetailsManager userDetailsManager(DataSource dataSource){
+    public UserDetailsManager userDetailsManager(DataSource dataSource){
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
         jdbcUserDetailsManager.setUsersByUsernameQuery(
                 "SELECT email, password, active FROM users WHERE email=?");
@@ -35,10 +38,24 @@ public class CinemaSecurityConfig{
 
     }
     @Bean
+    public RoleHierarchy roleHierarchy(){
+        RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
+        String hierarchy = "ADMIN > MANAGER \n MANAGER > EMPLOYEE \n EMPLOYEE > USER";
+        roleHierarchy.setHierarchy(hierarchy);
+        return roleHierarchy;
+    }
+    @Bean
+    public DefaultWebSecurityExpressionHandler webSecurityExpressionHandler(){
+        DefaultWebSecurityExpressionHandler expressionHandler = new DefaultWebSecurityExpressionHandler();
+        expressionHandler.setRoleHierarchy(roleHierarchy());
+        return expressionHandler;
+    }
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         //http builder configurations for authorize requests and form login
         http.authorizeHttpRequests(config -> config
                 .anyRequest().permitAll())
+
                 .formLogin(form->form
                         .loginPage("/users/login")
                         .permitAll())

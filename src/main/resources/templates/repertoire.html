@@ -28,7 +28,8 @@
         <td th:text="${tempSeance.time}"></td>
         <td th:text="${#lists.size(tempSeance.seats)}"></td>
         <td th:text="${tempSeance.getMovie_id().getLength()}"></td>
-        <td> <a th:href="@{/seanceId/{seance_id} (seance_id=${tempSeance.getId()})}">Buy a ticket!</a></td>
+        <td sec:authorize="isAuthenticated()"> <a th:href="@{/seanceId/{seance_id} (seance_id=${tempSeance.getId()})}">Buy a ticket!</a></td>
+        <td sec:authorize="isAnonymous()"> <a th:href="@{/users/login}">Sign up first to purchase a ticket!</a></td>
     </tr>
     </tbody>
 </table>
