@@ -16,7 +16,7 @@
         <th>Movie hall name</th>
         <th>Date</th>
         <th>Time</th>
-        <th>Seance length</th>
+        <th>Screening length</th>
         <th>My seats</th>
         <th>Ticket ID</th>
     </tr>
@@ -24,13 +24,13 @@
     <tbody>
     <tr th:each = "myTickets : ${tickets}">
 
-        <td th:text="${myTickets.seance_id.getMovie_id().getTitle()}"></td>
+        <td th:text="${myTickets.screening_id.getMovie_id().getTitle()}"></td>
         <td th:text="${myTickets.userId.getFirstName()}"></td>
         <td th:text="${myTickets.userId.getLastName()}"></td>
-        <td th:text="${myTickets.seance_id.getHall_id().getHallName()}"></td>
-        <td th:text="${myTickets.seance_id.getDate()}"></td>
-        <td th:text="${myTickets.seance_id.getTime()}"></td>
-        <td th:text="${myTickets.seance_id.getMovie_id().getLength()}"></td>
+        <td th:text="${myTickets.screening_id.getHall_id().getHallName()}"></td>
+        <td th:text="${myTickets.screening_id.getDate()}"></td>
+        <td th:text="${myTickets.screening_id.getTime()}"></td>
+        <td th:text="${myTickets.screening_id.getMovie_id().getLength()}"></td>
         <td>
             <p th:each="seat : ${myTickets.getSeat()}">
                 <span th:text="${seat}"></span>

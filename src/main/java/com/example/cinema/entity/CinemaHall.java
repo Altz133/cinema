@@ -19,7 +19,7 @@ public @Data class  CinemaHall {
 
     @OneToMany(mappedBy = "hall_id")
     @ToString.Exclude
-    private List<Seance> seanceList;
+    private List<Screening> ScreeningList;
 
     @Column(name="seats")
     private int seats;

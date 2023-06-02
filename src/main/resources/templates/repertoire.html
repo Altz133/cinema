@@ -20,7 +20,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each = "tempSeance : ${seances}">
+    <tr th:each = "tempSeance : ${Screenings}">
 
         <td th:text="${tempSeance.movie_id.getTitle()}"></td>
         <td th:text="${tempSeance.hall_id.getHallName()}"></td>
@@ -34,7 +34,7 @@
     </tbody>
 </table>
 <div>
-    <a th:href="@{/addNewSeance}">Add new Seance</a>
+    <a th:href="@{/addNewScreening}">Add new Seance</a>
 </div>
 <div th:insert="~{fragments/footer :: footer}">&copy; 2016 The Static Templates</div>
 </body>

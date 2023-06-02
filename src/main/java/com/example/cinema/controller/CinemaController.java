@@ -19,15 +19,15 @@ import java.util.stream.IntStream;
 
 @Controller
 public class CinemaController {
-    private SeanceService seanceService;
+    private ScreeningService ScreeningService;
     private MovieService movieService;
     private CinemaHallService cinemaHallService;
     private TicketService ticketService;
     private UserService userService;
 
     @Autowired
-    public CinemaController(SeanceService theSeanceService, MovieService theMovieService, CinemaHallService theCinemaHallService, TicketService theTicketService, UserService theUserService) {
-        seanceService = theSeanceService;
+    public CinemaController(ScreeningService theScreeningService, MovieService theMovieService, CinemaHallService theCinemaHallService, TicketService theTicketService, UserService theUserService) {
+        ScreeningService = theScreeningService;
         movieService= theMovieService;
         cinemaHallService = theCinemaHallService;
         ticketService = theTicketService;
@@ -36,33 +36,33 @@ public class CinemaController {
 
     @GetMapping("/repertoire")
     public String repertoire(Model theModel){
-        Iterable<Seance> theSeance = seanceService.findAllSeances();
-        theModel.addAttribute("seances", theSeance);
+        Iterable<Screening> theScreening = ScreeningService.findAllScreenings();
+        theModel.addAttribute("Screenings", theScreening);
         return "repertoire";
     }
 
-    @GetMapping("/addNewSeance")
-    public String addNewSeance( Model theModel){
-        Seance seance = new Seance();
+    @GetMapping("/addNewScreening")
+    public String addNewScreening( Model theModel){
+        Screening screening = new Screening();
         Iterable<Movie> theMovies = movieService.findAll();
         Iterable<CinemaHall> theHall = cinemaHallService.findAll();
-        theModel.addAttribute("seance",seance);
+        theModel.addAttribute("screening",screening);
         theModel.addAttribute("movieOptions", theMovies);
         theModel.addAttribute("cinemaHallOptions",theHall);
-        return "addSeanceForm";
+        return "addScreeningForm";
     }
-    @PostMapping("/saveSeance")
-    public String saveSeanceForm(@ModelAttribute("seance") Seance seance){
-        int tempSeats= seance.getHall_id().getSeats();
+    @PostMapping("/saveScreening")
+    public String saveScreeningForm(@ModelAttribute("Screening") Screening Screening){
+        int tempSeats= Screening.getHall_id().getSeats();
         int[] seats = IntStream.range(1, tempSeats+1).toArray();
-        seance.setSeats(seats);
-        seanceService.save(seance);
+        Screening.setSeats(seats);
+        ScreeningService.save(Screening);
         return "redirect:/repertoire";
     }
-    @GetMapping("/seanceId/{seance_id}")
-    public String ticketPurchaseForm(@PathVariable(value="seance_id")int seance_id, Model theModel){
-        Seance currentSeance =seanceService.getSeanceById(seance_id);
-        CinemaHall tempSeats = cinemaHallService.getCinemaHallByHallId(currentSeance.getHall_id().getHallId());
+    @GetMapping("/ScreeningId/{Screening_id}")
+    public String ticketPurchaseForm(@PathVariable(value="Screening_id")int Screening_id, Model theModel){
+        Screening currentScreening =ScreeningService.getScreeningById(Screening_id);
+        CinemaHall tempSeats = cinemaHallService.getCinemaHallByHallId(currentScreening.getHall_id().getHallId());
         int[] seats= IntStream.range(1,tempSeats.getSeats()+1).toArray();
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -70,7 +70,7 @@ public class CinemaController {
 
         Ticket ticket = new Ticket();
         ticket.setUserId(currentUser);
-        ticket.setSeance_id(currentSeance);
+        ticket.setScreening_id(currentScreening);
 //        ModelAndView mav = new ModelAndView("ticketPurchaseForm");
         theModel.addAttribute("seats",seats);
         theModel.addAttribute("ticket",ticket);

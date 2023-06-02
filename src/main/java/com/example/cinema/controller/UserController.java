@@ -1,6 +1,6 @@
 package com.example.cinema.controller;
 
-import com.example.cinema.entity.Seance;
+import com.example.cinema.entity.Screening;
 import com.example.cinema.entity.Ticket;
 import com.example.cinema.entity.Users;
 import com.example.cinema.service.TicketService;

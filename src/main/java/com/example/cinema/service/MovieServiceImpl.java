@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 public class MovieServiceImpl implements MovieService {
     private MovieRepository movieRepo;
     @Autowired
-    public MovieServiceImpl(MovieRepository themovieRepo) {
-        movieRepo = themovieRepo;
+    public MovieServiceImpl(MovieRepository theMovieRepo) {
+        movieRepo = theMovieRepo;
     }
 
     @Override

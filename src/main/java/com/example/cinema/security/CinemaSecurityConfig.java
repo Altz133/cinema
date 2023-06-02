@@ -37,19 +37,19 @@ public class CinemaSecurityConfig{
         return jdbcUserDetailsManager;
 
     }
-    @Bean
-    public RoleHierarchy roleHierarchy(){
-        RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
-        String hierarchy = "ADMIN > MANAGER \n MANAGER > EMPLOYEE \n EMPLOYEE > USER";
-        roleHierarchy.setHierarchy(hierarchy);
-        return roleHierarchy;
-    }
-    @Bean
-    public DefaultWebSecurityExpressionHandler webSecurityExpressionHandler(){
-        DefaultWebSecurityExpressionHandler expressionHandler = new DefaultWebSecurityExpressionHandler();
-        expressionHandler.setRoleHierarchy(roleHierarchy());
-        return expressionHandler;
-    }
+//    @Bean
+//    public RoleHierarchy roleHierarchy(){
+//        RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
+//        String hierarchy = "ADMIN > MANAGER \n MANAGER > EMPLOYEE \n EMPLOYEE > USER";
+//        roleHierarchy.setHierarchy(hierarchy);
+//        return roleHierarchy;
+//    }
+//    @Bean
+//    public DefaultWebSecurityExpressionHandler webSecurityExpressionHandler(){
+//        DefaultWebSecurityExpressionHandler expressionHandler = new DefaultWebSecurityExpressionHandler();
+//        expressionHandler.setRoleHierarchy(roleHierarchy());
+//        return expressionHandler;
+//    }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         //http builder configurations for authorize requests and form login

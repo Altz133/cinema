@@ -3,25 +3,22 @@ package com.example.cinema.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
 import java.sql.Time;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
-@Table(name="seance")
+@Table(name="screening")
 @ToString
-public @Data class Seance {
+public @Data class Screening {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="seance_id")
+    @Column(name="screening_id")
     private int id;
 
-    @OneToMany(mappedBy = "seance_id")
+    @OneToMany(mappedBy = "screening_id")
     @ToString.Exclude
     private List<Ticket> ticketList;
 
@@ -34,10 +31,10 @@ public @Data class Seance {
     private CinemaHall hall_id;
 
 
-    @Column(name="seance_date")
+    @Column(name="screening_date")
     private Date date;
 
-    @Column(name="seance_time")
+    @Column(name="screening_time")
     private Time time;
 
     @Column(name="seats_available2")

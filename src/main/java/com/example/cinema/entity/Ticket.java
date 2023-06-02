@@ -21,8 +21,8 @@ public @Data class Ticket {
     private Users userId;
 
     @ManyToOne
-    @JoinColumn(name = "seance_id")
-    private Seance seance_id;
+    @JoinColumn(name = "screening_id")
+    private Screening screening_id;
 
     @Column(name = "seat")
     private int[] seat;

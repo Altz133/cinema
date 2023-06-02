@@ -17,7 +17,7 @@ public @Data class Movie {
 
     @OneToMany(mappedBy = "movie_id")
     @ToString.Exclude
-    private List<Seance> seanceList;
+    private List<Screening> ScreeningList;
 
     @Column(name="title")
     private String title;
