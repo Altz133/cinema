@@ -59,9 +59,9 @@ public class CinemaController {
         ScreeningService.save(Screening);
         return "redirect:/repertoire";
     }
-    @GetMapping("/ScreeningId/{Screening_id}")
-    public String ticketPurchaseForm(@PathVariable(value="Screening_id")int Screening_id, Model theModel){
-        Screening currentScreening =ScreeningService.getScreeningById(Screening_id);
+    @GetMapping("/screeningId/{screening_id}")
+    public String ticketPurchaseForm(@PathVariable(value="screening_id")int screening_id, Model theModel){
+        Screening currentScreening =ScreeningService.getScreeningById(screening_id);
         CinemaHall tempSeats = cinemaHallService.getCinemaHallByHallId(currentScreening.getHall_id().getHallId());
         int[] seats= IntStream.range(1,tempSeats.getSeats()+1).toArray();
 

@@ -13,28 +13,28 @@
         <th scope="col">Title</th>
         <th scope="col">Movie hall name</th>
         <th scope="col">Date</th>
-        <th scope="col">Seance time</th>
+        <th scope="col">Screening time</th>
         <th scope="col">Seats available </th>
-        <th scope="col">Seance length</th>
+        <th scope="col">Screening length</th>
         <th scope="col">Ticket</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each = "tempSeance : ${Screenings}">
+    <tr th:each = "tempScreening : ${Screenings}">
 
-        <td th:text="${tempSeance.movie_id.getTitle()}"></td>
-        <td th:text="${tempSeance.hall_id.getHallName()}"></td>
-        <td th:text="${tempSeance.date}"></td>
-        <td th:text="${tempSeance.time}"></td>
-        <td th:text="${#lists.size(tempSeance.seats)}"></td>
-        <td th:text="${tempSeance.getMovie_id().getLength()}"></td>
-        <td sec:authorize="isAuthenticated()"> <a th:href="@{/seanceId/{seance_id} (seance_id=${tempSeance.getId()})}">Buy a ticket!</a></td>
+        <td th:text="${tempScreening.movie_id.getTitle()}"></td>
+        <td th:text="${tempScreening.hall_id.getHallName()}"></td>
+        <td th:text="${tempScreening.date}"></td>
+        <td th:text="${tempScreening.time}"></td>
+        <td th:text="${#lists.size(tempScreening.seats)}"></td>
+        <td th:text="${tempScreening.getMovie_id().getLength()}"></td>
+        <td sec:authorize="isAuthenticated()"> <a th:href="@{/screeningId/{screening_id} (screening_id=${tempScreening.getId()})}">Buy a ticket!</a></td>
         <td sec:authorize="isAnonymous()"> <a th:href="@{/users/login}">Sign up first to purchase a ticket!</a></td>
     </tr>
     </tbody>
 </table>
 <div>
-    <a th:href="@{/addNewScreening}">Add new Seance</a>
+    <a th:href="@{/addNewScreening}">Add new Screening</a>
 </div>
 <div th:insert="~{fragments/footer :: footer}">&copy; 2016 The Static Templates</div>
 </body>
