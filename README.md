@@ -55,7 +55,7 @@ git clone https://github.com/Altz133/cinema.git
 
 Navigate to the project directory and build the application using Maven:
 ```
-cd repository-name
+cd cinema
 mvn clean install
 ```
 
