@@ -1,6 +1,6 @@
 # Project Cinema
 
-Project cinema is a simple exercise intedent to increase my skills in java web developmnet. The main idea is to create a functional web application to manage cinema workflow. With support of Spring Boot framework app responsible for makign basic CRUD operations. Project is under active development.
+Project cinema is a simple exercise intedened to increase my skills in Java web development. The main idea is to create a functional web application to manage cinema workflow. With support of Spring Boot framework app responsible for makign basic CRUD operations. Project is under active development.
 ### The main features to implement:
 * Adding/removing/editing user 
 * Adding/removing/editing cinema repertoire
