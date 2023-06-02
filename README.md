@@ -25,7 +25,7 @@ Project cinema is a simple exercise intedent to increase my skills in java web d
 
 # ERD of PostgreSQL database
 
-![ERD](/src/main/resources/readme/erd.png)
+![ERD](/src/main/resources/readme/erd2.png)
 
 # Views of some implemented features
  ### List of currenlty registered users
