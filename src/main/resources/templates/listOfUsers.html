@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,18 +10,24 @@
 <table class="table table-bordered table-striped">
     <thead class="table-dark">
     <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
         <th>Roles</th>
+        <th sec:authorize="hasRole('ADMIN')">Options</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each = "tempUser : ${users}">
-      <td th:text="${tempUser.firstName}"></td>
-      <td th:text="${tempUser.lastName}"></td>
-      <td th:text="${tempUser.email}"></td>
+        <td th:text="${tempUser.firstName}"></td>
+        <td th:text="${tempUser.lastName}"></td>
+        <td th:text="${tempUser.email}"></td>
         <td th:text="${tempUser.role}"></td>
+        <td sec:authorize="hasRole('ADMIN')">
+            <a th:href = "@{/users/delete/{userId} (userId = ${tempUser.getId()})}"
+            th:data-confirm-delete ="| Are you sure u want to delete this employee ${tempUser.firstName} ${tempUser.lastName}|"
+            onclick="if(!confirm(this.getAttribute('data-confirm-delete')))return false"> Delete User</a>
+        </td>
     </tr>
     </tbody>
 </table>

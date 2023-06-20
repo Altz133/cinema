@@ -37,7 +37,10 @@ public class UserServiceImpl implements UserService{
         return userRepository.getRoles();
     }
 
+    public void deleteUserById(int id) { userRepository.deleteUsersById(id); };
 
-
+    public Users getUserById(Integer id){
+        return userRepository.getUserById(id);
+    }
 
 }

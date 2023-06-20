@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,8 +29,6 @@ public class UserController {
 
         this.ticketService= theTicketService;
     }
-
-
     @GetMapping("/signin")
     public String signInForm(Model theModel){
         Users user = new Users();
@@ -49,6 +48,18 @@ public class UserController {
         users.setPassword(encodedPassword);
         users.setRole("ROLE_USER");
         userService.save(users);
+        return "redirect:/users/info";
+    }
+
+
+    @GetMapping("/delete/{userId}")
+    @Transactional
+    public String deleteUser(@PathVariable int userId){
+        Users themp = userService.getUserById(userId);
+        userService.deleteUserById(userId);
+        if(themp ==null){
+            throw new RuntimeException("Not exitising employee id - "+userId);
+        }
         return "redirect:/users/info";
     }
 

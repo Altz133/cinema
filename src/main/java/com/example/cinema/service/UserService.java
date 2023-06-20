@@ -9,4 +9,6 @@ public interface UserService {
     Iterable<Users> findAll();
     Users getUsersByEmail(String email);
     Iterable<String> getEveryRole();
+    void deleteUserById(int id);
+    Users getUserById(Integer id);
 }
