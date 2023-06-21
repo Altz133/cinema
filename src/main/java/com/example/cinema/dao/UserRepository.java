@@ -11,8 +11,7 @@ public interface UserRepository extends CrudRepository<Users,Integer> {
     Users getUsersByEmail(String email);
     Users getUserById(Integer id);
 
-    @Query("SELECT DISTINCT role FROM Users")
-    Iterable<String> getRoles();
+
 
     void deleteUsersById(int id);
 

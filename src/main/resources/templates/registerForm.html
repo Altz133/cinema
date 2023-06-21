@@ -25,9 +25,9 @@
         <input type="password" th:field="*{password}" id="passwd">
         <div sec:authorize="hasRole('ADMIN')">
             <label for="setRole"> Set Role (Manager or higher only)</label>
-            <select class="form-control" id="setRole" th:field="*{role}">
+            <select class="form-control" id="setRole" th:field="*{roleId}">
                 <option value="0" disabled> select option</option>
-                <option th:each="role : ${roles}" th:value="${role}" th:text="${role}" ></option>
+                <option th:each="role : ${roles}" th:value="${role.getId()}" th:text="${role.getRoleName()}" ></option>
             </select>
         </div>
         <input type="submit">

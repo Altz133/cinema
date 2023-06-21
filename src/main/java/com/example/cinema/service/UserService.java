@@ -8,7 +8,6 @@ public interface UserService {
     void save(Users theUsers);
     Iterable<Users> findAll();
     Users getUsersByEmail(String email);
-    Iterable<String> getEveryRole();
     void deleteUserById(int id);
     Users getUserById(Integer id);
 }

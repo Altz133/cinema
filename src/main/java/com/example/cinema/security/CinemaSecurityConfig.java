@@ -33,7 +33,7 @@ public class CinemaSecurityConfig{
         jdbcUserDetailsManager.setUsersByUsernameQuery(
                 "SELECT email, password, active FROM users WHERE email=?");
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
-                "SELECT email, role FROM users WHERE email=?");
+                "SELECT email, role_name FROM users JOIN roles ON users.role_id=roles.role_id WHERE email = ?");
         return jdbcUserDetailsManager;
 
     }

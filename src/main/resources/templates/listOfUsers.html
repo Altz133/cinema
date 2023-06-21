@@ -22,7 +22,7 @@
         <td th:text="${tempUser.firstName}"></td>
         <td th:text="${tempUser.lastName}"></td>
         <td th:text="${tempUser.email}"></td>
-        <td th:text="${tempUser.role}"></td>
+        <td th:text="${tempUser.getRoleId().getRoleName()}"></td>
         <td sec:authorize="hasRole('ADMIN')">
             <a th:href = "@{/users/delete/{userId} (userId = ${tempUser.getId()})}"
             th:data-confirm-delete ="| Are you sure u want to delete this employee ${tempUser.firstName} ${tempUser.lastName}|"

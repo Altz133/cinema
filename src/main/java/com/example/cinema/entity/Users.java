@@ -28,8 +28,9 @@ public @Data class Users {
     private String email;
     @Column(name="password")
     private String password;
-    @Column(name="role")
-    private String role;
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role roleId;
 
 
     public Users() {

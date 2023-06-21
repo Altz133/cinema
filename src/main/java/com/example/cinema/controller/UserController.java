@@ -1,8 +1,10 @@
 package com.example.cinema.controller;
 
+import com.example.cinema.entity.Role;
 import com.example.cinema.entity.Screening;
 import com.example.cinema.entity.Ticket;
 import com.example.cinema.entity.Users;
+import com.example.cinema.service.RoleService;
 import com.example.cinema.service.TicketService;
 import com.example.cinema.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +24,23 @@ public class UserController {
 
     private UserService userService;
     private TicketService ticketService;
+    private RoleService roleService;
 
     @Autowired
-    public void setUserService(UserService theUserService, TicketService theTicketService){
+    public void setUserService(UserService theUserService, TicketService theTicketService, RoleService theRoleService){
         this.userService = theUserService;
 
         this.ticketService= theTicketService;
+
+        this.roleService =theRoleService;
     }
     @GetMapping("/signin")
     public String signInForm(Model theModel){
         Users user = new Users();
-        Iterable<String> allRoles= userService.getEveryRole();
-        theModel.addAttribute("roles",allRoles);
+        Iterable<Role> allRoles = roleService.getRoles();
+
+
+        theModel.addAttribute("roles", allRoles);
         theModel.addAttribute("users", user);
         return "registerForm";
     }
@@ -46,7 +53,10 @@ public class UserController {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(users.getPassword());
         users.setPassword(encodedPassword);
-        users.setRole("ROLE_USER");
+        if(users.getRoleId() == null){
+            users.setRoleId(roleService.getUserRole(10));
+        }
+
         userService.save(users);
         return "redirect:/users/info";
     }
