@@ -8,6 +8,7 @@
 </head>
 <body>
 <div th:insert="~{/fragments/header}"></div>
+<div th:insert="~{/fragments/adminPanel}" sec:authorize="hasAnyRole('ADMIN','MANAGER')"></div>
 <h1> Halo </h1>
 <h1 sec:authorize="isAnonymous()"> YOu are anonymous</h1>
 <div sec:authorize="isAuthenticated()">

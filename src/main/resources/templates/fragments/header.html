@@ -20,9 +20,6 @@
         <a class="nav-link" th:href="@{/repertoire}">Repertoire</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" th:href="@{/users/info}" sec:authorize="hasRole('ADMIN')"> Info (admin only) </a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" th:href="@{/users/myTickets}" sec:authorize="isAuthenticated()"> MyTickets (logged only) </a>
       </li>
     </ul>
@@ -49,5 +46,6 @@
     </ul>
   </div>
 </nav>
+
 </body>
 </html>

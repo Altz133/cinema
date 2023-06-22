@@ -6,7 +6,10 @@
     <title>Title</title>
 </head>
 <body>
+
 <div th:insert="~{fragments/header}"></div>
+<div th:insert="~{/fragments/adminPanel}" sec:authorize="hasAnyRole('ADMIN','MANAGER')"></div>
+
 <table class="table table-bordered table-striped">
     <thead class="table-dark">
     <tr>
@@ -24,7 +27,7 @@
         <td th:text="${tempUser.email}"></td>
         <td th:text="${tempUser.getRoleId().getRoleName()}"></td>
         <td sec:authorize="hasRole('ADMIN')">
-            <a th:href = "@{/users/delete/{userId} (userId = ${tempUser.getId()})}"
+            <a th:href = "@{/users/manage/delete/{userId} (userId = ${tempUser.getId()})}"
             th:data-confirm-delete ="| Are you sure u want to delete this employee ${tempUser.firstName} ${tempUser.lastName}|"
             onclick="if(!confirm(this.getAttribute('data-confirm-delete')))return false"> Delete User</a>
         </td>

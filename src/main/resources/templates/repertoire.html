@@ -6,7 +6,10 @@
     <title>Title</title>
 </head>
 <body>
+
 <div th:insert="~{fragments/header}"></div>
+<div th:insert="~{/fragments/adminPanel}" sec:authorize="hasAnyRole('ADMIN','MANAGER')"></div>
+
 <table class="table table-bordered table-striped">
     <thead class="thead-dark">
     <tr>

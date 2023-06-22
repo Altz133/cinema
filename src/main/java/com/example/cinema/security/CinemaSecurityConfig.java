@@ -50,11 +50,29 @@ public class CinemaSecurityConfig{
 //        expressionHandler.setRoleHierarchy(roleHierarchy());
 //        return expressionHandler;
 //    }
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+//        //http builder configurations for authorize requests and form login
+//        http.authorizeHttpRequests(config -> config
+//                .anyRequest().permitAll())
+//
+//                .formLogin(form->form
+//                        .loginPage("/users/login")
+//                        .permitAll())
+//                .logout(logout->logout.permitAll()
+//                )
+//                .exceptionHandling(config->config
+//                        .accessDeniedPage("/accessDenied"));
+//
+//        return http.build();
+//
+//    }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         //http builder configurations for authorize requests and form login
         http.authorizeHttpRequests(config -> config
-                .anyRequest().permitAll())
+                        .requestMatchers("/users/manage/**").hasAnyRole("ADMIN","MANAGER")
+                        .anyRequest().permitAll())
 
                 .formLogin(form->form
                         .loginPage("/users/login")

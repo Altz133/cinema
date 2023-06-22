@@ -71,11 +71,8 @@ public class CinemaController {
         Ticket ticket = new Ticket();
         ticket.setUserId(currentUser);
         ticket.setScreening_id(currentScreening);
-//        ModelAndView mav = new ModelAndView("ticketPurchaseForm");
         theModel.addAttribute("seats",seats);
         theModel.addAttribute("ticket",ticket);
-//        mav.addObject("seats",seats);
-//        mav.addObject("ticket",ticket);
         return "ticketPurchaseForm";
     }
     @PostMapping("/saveTicket")

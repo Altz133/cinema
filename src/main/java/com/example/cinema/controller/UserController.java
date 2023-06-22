@@ -62,18 +62,15 @@ public class UserController {
     }
 
 
-    @GetMapping("/delete/{userId}")
+    @GetMapping("/manage/delete/{userId}")
     @Transactional
     public String deleteUser(@PathVariable int userId){
         Users themp = userService.getUserById(userId);
         userService.deleteUserById(userId);
-        if(themp ==null){
-            throw new RuntimeException("Not exitising employee id - "+userId);
-        }
         return "redirect:/users/info";
     }
 
-    @GetMapping("/info")
+    @GetMapping("/manage/info")
     public String listEmployees(Model theModel) {
         Iterable<Users> theUsers = userService.findAll();
         // add to the spring model

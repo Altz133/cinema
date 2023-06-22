@@ -6,6 +6,7 @@
 </head>
 <body>
 <div th:insert="~{fragments/header}"></div>
+<div th:insert="~{/fragments/adminPanel}" sec:authorize="hasAnyRole('ADMIN','MANAGER')"></div>
 <div class="container">
     <form action="#"
           th:action="@{/saveScreening}"
