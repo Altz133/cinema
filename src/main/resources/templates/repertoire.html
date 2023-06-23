@@ -32,12 +32,12 @@
         <td th:text="${#lists.size(tempScreening.seats)}"></td>
         <td th:text="${tempScreening.getMovie_id().getLength()}"></td>
         <td sec:authorize="isAuthenticated()"> <a th:href="@{/screeningId/{screening_id} (screening_id=${tempScreening.getId()})}">Buy a ticket!</a></td>
-        <td sec:authorize="isAnonymous()"> <a th:href="@{/users/login}">Sign up first to purchase a ticket!</a></td>
+        <td sec:authorize="isAnonymous()"> <a th:href="@{/users/login}">Sign in first to purchase a ticket!</a></td>
     </tr>
     </tbody>
 </table>
 <div>
-    <a th:href="@{/addNewScreening}">Add new Screening</a>
+    <a th:href="@{/manage/addNewScreening}" sec:authorize="hasAnyRole('ADMIN','MANAGER','EMPLOYEE')">Add new Screening</a>
 </div>
 <div th:insert="~{fragments/footer :: footer}">&copy; 2016 The Static Templates</div>
 </body>

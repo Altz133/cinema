@@ -17,7 +17,7 @@
         <th>Last Name</th>
         <th>Email</th>
         <th>Roles</th>
-        <th sec:authorize="hasRole('ADMIN')">Options</th>
+        <th sec:authorize="hasAnyRole('ADMIN','MANAGER')">Options</th>
     </tr>
     </thead>
     <tbody>
@@ -26,7 +26,7 @@
         <td th:text="${tempUser.lastName}"></td>
         <td th:text="${tempUser.email}"></td>
         <td th:text="${tempUser.getRoleId().getRoleName()}"></td>
-        <td sec:authorize="hasRole('ADMIN')">
+        <td sec:authorize="hasAnyRole('ADMIN','MANAGER')">
             <a th:href = "@{/users/manage/delete/{userId} (userId = ${tempUser.getId()})}"
             th:data-confirm-delete ="| Are you sure u want to delete this employee ${tempUser.firstName} ${tempUser.lastName}|"
             onclick="if(!confirm(this.getAttribute('data-confirm-delete')))return false"> Delete User</a>

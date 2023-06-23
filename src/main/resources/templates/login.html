@@ -9,7 +9,9 @@
 
 <div th:insert="~{fragments/header}"></div>
 <div th:insert="~{/fragments/adminPanel}" sec:authorize="hasAnyRole('ADMIN','MANAGER')"></div>
-
+<h2>
+  Login Form
+</h2>
 <div class="container">
   <form action="#"
         th:action="@{/users/login}"

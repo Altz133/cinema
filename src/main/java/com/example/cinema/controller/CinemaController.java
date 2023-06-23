@@ -41,7 +41,7 @@ public class CinemaController {
         return "repertoire";
     }
 
-    @GetMapping("/addNewScreening")
+    @GetMapping("/manage/addNewScreening")
     public String addNewScreening( Model theModel){
         Screening screening = new Screening();
         Iterable<Movie> theMovies = movieService.findAll();
@@ -51,7 +51,7 @@ public class CinemaController {
         theModel.addAttribute("cinemaHallOptions",theHall);
         return "addScreeningForm";
     }
-    @PostMapping("/saveScreening")
+    @PostMapping("/manage/saveScreening")
     public String saveScreeningForm(@ModelAttribute("Screening") Screening Screening){
         int tempSeats= Screening.getHall_id().getSeats();
         int[] seats = IntStream.range(1, tempSeats+1).toArray();

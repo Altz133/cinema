@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,7 +10,7 @@
 <div th:insert="~{/fragments/adminPanel}" sec:authorize="hasAnyRole('ADMIN','MANAGER')"></div>
 <div class="container">
     <form action="#"
-          th:action="@{/saveScreening}"
+          th:action="@{/manage/saveScreening}"
           th:object="${screening}"
           method="POST">
 

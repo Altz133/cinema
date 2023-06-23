@@ -9,34 +9,56 @@
 
 <div th:insert="~{fragments/header}"></div>
 <div th:insert="~{/fragments/adminPanel}" sec:authorize="hasAnyRole('ADMIN','MANAGER')"></div>
-
-<div class="container">
+<div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body p-5">
+                        <h2 class="text-uppercase text-center mb-5">Create an account</h2>
     <form action="#"
           th:action="@{/users/save}"
           th:object="${users}"
           method="POST">
 
-        <label for="firstName">First Name</label>
-        <input th:field="*{firstName}" id="firstName"/>
+        <div class="form-outline mb-4">
+        <label for="firstName" class="form-label">First Name</label>
+        <input th:field="*{firstName}" id="firstName" class="form-control form-control-lg" />
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+        </div>
 
-        <label for="lastName">Last Name</label>
-        <input type="text" th:field="*{lastName}" id="lastName"/>
+        <div class="form-outline mb-4">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input type="text" th:field="*{lastName}" id="lastName" class="form-control form-control-lg" />
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+        </div>
 
-        <label for="email">Email</label>
-        <input type="text" th:field="*{email}" id="email"/>
-        <label for="passwd">Password</label>
-        <input type="password" th:field="*{password}" id="passwd">
-        <div sec:authorize="hasRole('ADMIN')">
-            <label for="setRole"> Set Role (Manager or higher only)</label>
-            <select class="form-control" id="setRole" th:field="*{roleId}">
+        <div class="form-outline mb-4">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" th:field="*{email}" id="email" class="form-control form-control-lg"/>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        </div>
+        <div class="form-outline mb-4">
+        <label for="passwd" class="form-label">Password</label>
+        <input type="password" th:field="*{password}" id="passwd" class="form-control form-control-lg">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        </div>
+        <div sec:authorize="hasAnyRole('ADMIN','MANAGER')" >
+            <label for="setRole" > Set Role (Manager or higher only)</label>
+            <select id="setRole" th:field="*{roleId}">
                 <option value="0" disabled> select option</option>
                 <option th:each="role : ${roles}" th:value="${role.getId()}" th:text="${role.getRoleName()}" ></option>
             </select>
         </div>
-        <input type="submit">
-
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-success"> Submit </button>
+        </div>
     </form>
-
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div th:insert="~{fragments/footer :: footer}">&copy; 2016 The Static Templates</div>
 </body>

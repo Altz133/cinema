@@ -7,6 +7,7 @@ import com.example.cinema.entity.Users;
 import com.example.cinema.service.RoleService;
 import com.example.cinema.service.TicketService;
 import com.example.cinema.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,7 +51,11 @@ public class UserController {
         return "login";
     }
     @PostMapping("/save")
-    public String saveUser(@ModelAttribute("users") Users users){
+    public String saveUser(@ModelAttribute("users") @Valid Users users, BindingResult result){
+        if(result.hasErrors()){
+
+            return "registerForm";
+        }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(users.getPassword());
         users.setPassword(encodedPassword);
@@ -58,7 +64,7 @@ public class UserController {
         }
 
         userService.save(users);
-        return "redirect:/users/info";
+        return "redirect:/users/manage/info";
     }
 
 
@@ -67,7 +73,7 @@ public class UserController {
     public String deleteUser(@PathVariable int userId){
         Users themp = userService.getUserById(userId);
         userService.deleteUserById(userId);
-        return "redirect:/users/info";
+        return "redirect:/users/manage/info";
     }
 
     @GetMapping("/manage/info")

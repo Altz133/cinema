@@ -1,6 +1,7 @@
 package com.example.cinema.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.ToString;
 
@@ -31,9 +32,10 @@ public @Data class Screening {
     private CinemaHall hall_id;
 
 
+    @NotEmpty
     @Column(name="screening_date")
     private Date date;
-
+    @NotEmpty
     @Column(name="screening_time")
     private Time time;
 

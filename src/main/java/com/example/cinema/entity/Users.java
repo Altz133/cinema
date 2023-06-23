@@ -1,6 +1,10 @@
 package com.example.cinema.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.ToString;
 
@@ -21,17 +25,21 @@ public @Data class Users {
     private List<Ticket> tickets;
 
     @Column(name="firstname")
+    @NotEmpty
     private String firstName;
     @Column(name="lastname")
+    @NotEmpty
     private String lastName;
     @Column(name= "email")
+    @Email
+    @NotEmpty
     private String email;
     @Column(name="password")
+    @NotEmpty
     private String password;
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
     private Role roleId;
-
 
     public Users() {
     }
