@@ -27,9 +27,11 @@
 
         <label for="date"> Date </label>
         <input type="Date" th:field="*{date}" name="date" id="date"/>
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
 
         <label for="time">Time</label>
         <input type="Time" th:field="*{time}" name="time" id="time" step="2"/>
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('time')}" th:errors="*{time}"></div>
 
 <!--        <input type="hidden" th:field="seats_available-->
         <input type="submit">

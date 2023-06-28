@@ -15,4 +15,6 @@ public interface RoleRepository extends CrudRepository<Role, Integer> {
     Role getRoleById(Integer Id);
     @Query("SELECT id, roleName FROM Role")
     List<Role> getRole();
+
+
 }

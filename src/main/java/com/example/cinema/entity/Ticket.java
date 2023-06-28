@@ -25,6 +25,9 @@ public @Data class Ticket {
     private Screening screening_id;
 
     @Column(name = "seat")
-    private int[] seat;
+    private int seat;
+
+    @Column(name="seats")
+    private int[] seats;
 
 }

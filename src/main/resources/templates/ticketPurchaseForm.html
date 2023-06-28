@@ -19,7 +19,7 @@
     <h1 style="margin:auto"> Screen </h1>
     <span th:each="seat : ${seats}">
         <label for="seat" th:text="${seat}"></label>
-        <input type="checkbox" id="seat"  th:value="${seat}" th:field="*{seat}"/>
+        <input type="checkbox" id="seat"  th:value="${seat}" th:field="*{seats}" />
         <span th:if="${seat % 10 == 0}"><br> </span>
     </span>
     <input type="hidden" th:field="*{userId}" th:value="${ticket.getUserId()}">

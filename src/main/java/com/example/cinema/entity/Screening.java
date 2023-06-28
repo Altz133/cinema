@@ -2,6 +2,7 @@ package com.example.cinema.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.ToString;
 
@@ -30,12 +31,10 @@ public @Data class Screening {
     @ManyToOne
     @JoinColumn(name="hall_id")
     private CinemaHall hall_id;
-
-
-    @NotEmpty
     @Column(name="screening_date")
+    @NotNull(message = "{date.notempty}")
     private Date date;
-    @NotEmpty
+    @NotNull(message = "{time.notempty}")
     @Column(name="screening_time")
     private Time time;
 

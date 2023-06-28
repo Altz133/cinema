@@ -36,28 +36,37 @@ public class UserController {
 
         this.roleService =theRoleService;
     }
-    @GetMapping("/signin")
-    public String signInForm(Model theModel){
+    @ModelAttribute
+    public void init(Model theModel){
         Users user = new Users();
         Iterable<Role> allRoles = roleService.getRoles();
 
-
         theModel.addAttribute("roles", allRoles);
         theModel.addAttribute("users", user);
+    }
+    @GetMapping("/signin")
+    public String signInForm(){
         return "registerForm";
     }
     @GetMapping("/login")
     public String login(){
         return "login";
     }
-    @PostMapping("/save")
-    public String saveUser(@ModelAttribute("users") @Valid Users users, BindingResult result){
-        if(result.hasErrors()){
 
+
+    @PostMapping("/save")
+    public String saveUser(@ModelAttribute("users") @Valid Users users,  BindingResult result){
+        if(result.hasErrors()){
             return "registerForm";
         }
+        String Name = Character.toUpperCase(users.getLastName().charAt(0)) + users.getLastName().substring(1);
+        String Lastname = Character.toUpperCase(users.getFirstName().charAt(0)) + users.getFirstName().substring(1);
+        users.setFirstName(Name);
+        users.setLastName(Lastname);
+
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(users.getPassword());
+
         users.setPassword(encodedPassword);
         if(users.getRoleId() == null){
             users.setRoleId(roleService.getUserRole(10));
@@ -71,7 +80,6 @@ public class UserController {
     @GetMapping("/manage/delete/{userId}")
     @Transactional
     public String deleteUser(@PathVariable int userId){
-        Users themp = userService.getUserById(userId);
         userService.deleteUserById(userId);
         return "redirect:/users/manage/info";
     }
@@ -79,7 +87,6 @@ public class UserController {
     @GetMapping("/manage/info")
     public String listEmployees(Model theModel) {
         Iterable<Users> theUsers = userService.findAll();
-        // add to the spring model
         theModel.addAttribute("users", theUsers);
         return "listOfUsers";
     }

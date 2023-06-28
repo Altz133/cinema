@@ -11,6 +11,8 @@ import lombok.ToString;
 import java.util.List;
 import java.util.Set;
 
+//custom validation messeges are located in /resources/messeges.properties
+
 @Entity
 @Table(name="users")
 @ToString
@@ -25,25 +27,23 @@ public @Data class Users {
     private List<Ticket> tickets;
 
     @Column(name="firstname")
-    @NotEmpty
+    @NotEmpty(message = "{firstName.notempty}")
     private String firstName;
     @Column(name="lastname")
-    @NotEmpty
+    @NotEmpty(message = "{lastName.notempty}")
     private String lastName;
     @Column(name= "email")
     @Email
-    @NotEmpty
+    @NotEmpty(message = "{email.notempty}")
     private String email;
     @Column(name="password")
-    @NotEmpty
+    @NotEmpty(message = "{password.notempty}")
+    @Min(value=8, message="{password.size}")
     private String password;
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
     private Role roleId;
-
     public Users() {
     }
-
-
 
 }
