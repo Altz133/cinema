@@ -9,6 +9,7 @@
 <div th:insert="~{fragments/header}"></div>
 <div th:insert="~{/fragments/adminPanel}" sec:authorize="hasAnyRole('ADMIN','MANAGER')"></div>
 <div class="container">
+    <h2>Plan new screening</h2>
     <form action="#"
           th:action="@{/manage/saveScreening}"
           th:object="${screening}"

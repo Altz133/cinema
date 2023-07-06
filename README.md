@@ -1,15 +1,18 @@
 # Project Cinema
 
-Project cinema is a simple exercise intedened to increase my skills in Java web development. The main idea is to create a functional web application to manage cinema workflow. With support of Spring Boot framework app responsible for makign basic CRUD operations. Project is under active development.
-### The main features to implement:
+Project cinema is a simple exercise intedened to increase my skills in Java web development. The main idea is to create a functional web application to manage cinema workflow. With support of Spring Boot application is responsible for CRUD operations on database. Project is under active development.
+
+### The main features:
+
 * Adding/removing/editing user 
 * Adding/removing/editing cinema repertoire
 * Adding/removing/editing new movies
 * Adding/removing/editing screenings
 * Purchasing tickets for a movie 
-* Cinama Hall seat managament
+* Screening seat management
 * User session
 * Role based access control based on role hierarchy
+* Admin control panel
 
 # Technologies
 
@@ -27,17 +30,25 @@ Project cinema is a simple exercise intedened to increase my skills in Java web 
 
 ![ERD](/src/main/resources/readme/erd2.png)
 
-# Views of some implemented features
+# Some of implemented features
+
  ### List of currenlty registered users
- ![users](/src/main/resources/readme/listOfUsers.png)
+![users](/src/main/resources/readme/listOfUsers.png)
 
+ ### Cinema repertoire for admin
+![repertoire](/src/main/resources/readme/repertoire.png)
 
- ### Cinema repertoire
- ![repertoire](/src/main/resources/readme/repertoire.png)
+  ### Cinema repertoire for guest
+![repertoireA](/src/main/resources/readme/repertoireAnonymous.png)
  
- ### List of users purchased tickets
- ![tickets](/src/main/resources/readme/MyTickets.png)
- 
+ ### List of ticket assigned to logged account
+![tickets](/src/main/resources/readme/MyTickets.png)
+
+### Registering a privileged user (admin or manager role only)
+![regPri](/src/main/resources/readme/registerprivileged.png)
+
+### Planing a new screening 
+![newScreening](/src/main/resources/readme/NewScreening.png)
  
  ### Prerequisites
 
