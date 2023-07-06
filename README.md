@@ -42,7 +42,7 @@ Project cinema is a simple exercise intedened to increase my skills in Java web 
 ![repertoireA](/src/main/resources/readme/repertoireAnonymous.png)
  
  ### List of ticket assigned to logged account
-![tickets](/src/main/resources/readme/MyTickets.png)
+![tickets](/src/main/resources/readme/MyTickets1.png)
 
 ### Registering a privileged user (admin or manager role only)
 ![regPri](/src/main/resources/readme/registerPrivileged.png)
