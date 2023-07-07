@@ -19,6 +19,9 @@
     <li class="nav-item">
       <a class="nav-link" th:href="@{/users/signin}" sec:authorize="hasAnyRole('ADMIN','MANAGER')"> Register privileged user</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" th:href="@{/manage/addMovie}" sec:authorize="hasAnyRole('ADMIN','MANAGER')"> Add new movie to Database</a>
+    </li>
   </ul>
   </div>
 </div>

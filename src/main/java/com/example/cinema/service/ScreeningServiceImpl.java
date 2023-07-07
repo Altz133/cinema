@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ScreeningServiceImpl implements ScreeningService{
@@ -30,5 +31,9 @@ public class ScreeningServiceImpl implements ScreeningService{
         return screeningRepository.getScreeningsById(id);
     }
 
+    @Override
+    public Optional<Iterable<Screening>> findByTitle(String title){
+        return screeningRepository.findByTitle(title);
+    }
 
 }

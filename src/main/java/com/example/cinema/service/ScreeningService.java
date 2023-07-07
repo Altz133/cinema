@@ -3,6 +3,7 @@ package com.example.cinema.service;
 import com.example.cinema.entity.Screening;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ScreeningService {
 
@@ -11,5 +12,6 @@ public interface ScreeningService {
 
     Screening getScreeningById(int id);
 
+    Optional<Iterable<Screening>> findByTitle(String title);
 
 }

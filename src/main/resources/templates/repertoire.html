@@ -24,8 +24,9 @@
     </thead>
     <tbody>
     <tr th:each = "tempScreening : ${Screenings}">
-
-        <td th:text="${tempScreening.movie_id.getTitle()}"></td>
+        <td>
+            <a   th:text="${tempScreening.movie_id.getTitle()}"  th:href="@{/movie/{movie_id} (movie_id = ${tempScreening.getMovie_id().getId()})}"></a>
+        </td>
         <td th:text="${tempScreening.hall_id.getHallName()}"></td>
         <td th:text="${tempScreening.date}"></td>
         <td th:text="${tempScreening.time}"></td>

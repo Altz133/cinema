@@ -11,14 +11,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 @Controller
@@ -44,6 +42,17 @@ public class CinemaController {
         theModel.addAttribute("Screenings", theScreening);
         return "repertoire";
     }
+    @GetMapping("/repertoire/{movie_title}")
+    public String repertoire(@PathVariable(value="movie_title")String title, Model theModel){
+        Optional<Iterable<Screening>> theScreening = screeningService.findByTitle(title);
+        Iterable<Screening> myScreenings = theScreening.orElse(null);
+        if(myScreenings == null){
+            return "error";
+        }
+        theModel.addAttribute("Screenings",myScreenings);
+
+        return "repertoire";
+    }
 
     @ModelAttribute
     public void init(Model theModel){
@@ -54,6 +63,7 @@ public class CinemaController {
         theModel.addAttribute("movieOptions", theMovies);
         theModel.addAttribute("cinemaHallOptions",theHall);
     }
+
     @GetMapping("/manage/addNewScreening")
     public String addNewScreening(){
         return "addScreeningForm";
@@ -103,6 +113,24 @@ public class CinemaController {
         ticketService.saveAll(listOfTickets);
         return "redirect:/repertoire";
     }
+    @GetMapping("/movie")
+    public String getMovie(Model theModel){
+        Iterable<Movie> movies= this.movieService.findAll();
+        theModel.addAttribute("movie", movies);
+        return "moviePage";
+    }
+    @GetMapping("/movie/{movie_id}")
+    public String getMovie(@PathVariable(value="movie_id") int movie_id, Model theModel) {
+        Optional<Movie> optionalMovie = this.movieService.findById(movie_id);
+        Movie myMovie = optionalMovie.orElse(null);
+        if(myMovie == null){
+            return "error";
+        }
+        theModel.addAttribute("movie",myMovie);
+
+        return "moviePage";
+    }
+
 
 
 }

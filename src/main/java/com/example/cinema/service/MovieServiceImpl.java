@@ -5,6 +5,8 @@ import com.example.cinema.entity.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class MovieServiceImpl implements MovieService {
     private MovieRepository movieRepo;
@@ -16,5 +18,10 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public Iterable<Movie> findAll() {
         return movieRepo.findAll();
+    }
+
+    @Override
+    public Optional<Movie> findById(Integer id) {
+        return movieRepo.findById(id);
     }
 }
