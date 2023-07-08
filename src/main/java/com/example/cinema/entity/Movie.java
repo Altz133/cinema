@@ -1,6 +1,7 @@
 package com.example.cinema.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.ToString;
 
@@ -20,22 +21,23 @@ public @Data class Movie {
     private List<Screening> ScreeningList;
 
     @Column(name="title")
+    @NotEmpty
     private String title;
 
     @Column(name="movie_length")
+    @NotEmpty
     private String length;
 
     @Column(name="description")
+    @NotEmpty
     private String description;
     @Column(name="main_actors")
+    @NotEmpty
     private String mainActors;
 
     @Column(name="poster")
+    @NotEmpty
     private String poster;
-
-    @Column(name="rating")
-    private int raitng;
-
 
     public Movie(String title, String length, String description) {
         this.title = title;
@@ -45,36 +47,5 @@ public @Data class Movie {
     public Movie() {
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getLength() {
-        return length;
-    }
-
-    public void setLength(String length) {
-        this.length = length;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
 }

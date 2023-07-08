@@ -59,9 +59,11 @@ public class CinemaController {
         Screening screening = new Screening();
         Iterable<Movie> theMovies = movieService.findAll();
         Iterable<CinemaHall> theHall = cinemaHallService.findAll();
+        Movie movie = new Movie();
         theModel.addAttribute("screening",screening);
         theModel.addAttribute("movieOptions", theMovies);
         theModel.addAttribute("cinemaHallOptions",theHall);
+        theModel.addAttribute("movie",movie);
     }
 
     @GetMapping("/manage/addNewScreening")
@@ -129,6 +131,21 @@ public class CinemaController {
         theModel.addAttribute("movie",myMovie);
 
         return "moviePage";
+    }
+
+    @GetMapping("/manage/addMovie")
+    public String addMovie(){
+        return "addNewMovieForm";
+
+    }
+    @PostMapping("/manage/saveMovie")
+    public String saveMovie(@ModelAttribute("movie") @Valid Movie movie, BindingResult result){
+        if(result.hasErrors())
+            return "addNewMovieForm";
+
+        movieService.save(movie);
+        return "redirect:/movie";
+
     }
 
 

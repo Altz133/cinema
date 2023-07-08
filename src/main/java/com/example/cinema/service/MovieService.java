@@ -7,4 +7,6 @@ import java.util.Optional;
 public interface  MovieService {
     Iterable<Movie> findAll();
     Optional<Movie> findById(Integer id);
+
+    void save(Movie movie);
 }

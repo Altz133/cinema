@@ -24,4 +24,8 @@ public class MovieServiceImpl implements MovieService {
     public Optional<Movie> findById(Integer id) {
         return movieRepo.findById(id);
     }
+    @Override
+    public void save(Movie movie){
+        movieRepo.save(movie);
+    }
 }
