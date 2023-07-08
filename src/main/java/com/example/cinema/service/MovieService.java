@@ -9,4 +9,6 @@ public interface  MovieService {
     Optional<Movie> findById(Integer id);
 
     void save(Movie movie);
+
+    void deleteMovieById(int id);
 }

@@ -25,7 +25,7 @@ public class MovieServiceImpl implements MovieService {
         return movieRepo.findById(id);
     }
     @Override
-    public void save(Movie movie){
-        movieRepo.save(movie);
-    }
+    public void save(Movie movie){movieRepo.save(movie);}
+    @Override
+    public void deleteMovieById(int id){movieRepo.deleteById(id);}
 }

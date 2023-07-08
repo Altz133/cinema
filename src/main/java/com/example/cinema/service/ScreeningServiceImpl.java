@@ -36,4 +36,7 @@ public class ScreeningServiceImpl implements ScreeningService{
         return screeningRepository.findByTitle(title);
     }
 
+    public void deleteScreeningsByMovieId(int id){
+        screeningRepository.deleteScreeningBymovie_id(id);
+    }
 }

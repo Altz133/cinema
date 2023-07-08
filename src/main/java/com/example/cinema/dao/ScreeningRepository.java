@@ -17,5 +17,8 @@ public interface ScreeningRepository extends CrudRepository<Screening,Integer> {
     @Query(value = "SELECT s.* FROM screening as s JOIN movies as m  ON s.movie_id = m.movie_id WHERE m.title= :title", nativeQuery = true)
     Optional<Iterable<Screening>> findByTitle(@Param("title")String title);
 
+    @Modifying
+    @Query("DELETE FROM Screening WHERE movie_id.id = :movieid")
+    void deleteScreeningBymovie_id(int movieid);
 
 }

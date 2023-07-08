@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -59,11 +60,9 @@ public class CinemaController {
         Screening screening = new Screening();
         Iterable<Movie> theMovies = movieService.findAll();
         Iterable<CinemaHall> theHall = cinemaHallService.findAll();
-        Movie movie = new Movie();
         theModel.addAttribute("screening",screening);
         theModel.addAttribute("movieOptions", theMovies);
         theModel.addAttribute("cinemaHallOptions",theHall);
-        theModel.addAttribute("movie",movie);
     }
 
     @GetMapping("/manage/addNewScreening")
@@ -115,39 +114,6 @@ public class CinemaController {
         ticketService.saveAll(listOfTickets);
         return "redirect:/repertoire";
     }
-    @GetMapping("/movie")
-    public String getMovie(Model theModel){
-        Iterable<Movie> movies= this.movieService.findAll();
-        theModel.addAttribute("movie", movies);
-        return "moviePage";
-    }
-    @GetMapping("/movie/{movie_id}")
-    public String getMovie(@PathVariable(value="movie_id") int movie_id, Model theModel) {
-        Optional<Movie> optionalMovie = this.movieService.findById(movie_id);
-        Movie myMovie = optionalMovie.orElse(null);
-        if(myMovie == null){
-            return "error";
-        }
-        theModel.addAttribute("movie",myMovie);
-
-        return "moviePage";
-    }
-
-    @GetMapping("/manage/addMovie")
-    public String addMovie(){
-        return "addNewMovieForm";
-
-    }
-    @PostMapping("/manage/saveMovie")
-    public String saveMovie(@ModelAttribute("movie") @Valid Movie movie, BindingResult result){
-        if(result.hasErrors())
-            return "addNewMovieForm";
-
-        movieService.save(movie);
-        return "redirect:/movie";
-
-    }
-
 
 
 }

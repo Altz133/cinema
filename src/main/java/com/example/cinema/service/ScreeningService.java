@@ -13,5 +13,6 @@ public interface ScreeningService {
     Screening getScreeningById(int id);
 
     Optional<Iterable<Screening>> findByTitle(String title);
+    void deleteScreeningsByMovieId(int id);
 
 }
